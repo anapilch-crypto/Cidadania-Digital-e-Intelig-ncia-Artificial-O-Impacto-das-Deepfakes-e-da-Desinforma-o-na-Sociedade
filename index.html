@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cidadania Digital & IA: Combate às Deepfakes</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Portal Cidadania Digital & IA</h1>
+            <!-- Botão de acessibilidade exigido no Nível 4 -->
+            <button id="theme-toggle">Alternar Modo Escuro</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Seção 1: Contextualização do Tema -->
+        <section class="intro">
+            <h2>O Impacto das Deepfakes e da Desinformação</h2>
+            <p>As deepfakes utilizam técnicas avançadas de Inteligência Artificial para adulterar vídeos, imagens e áudios com alto realismo. No contexto atual, a conscientização comunitária e o letramento digital são ferramentas essenciais para proteger a verdade e a integridade da nossa sociedade.</p>
+        </section>
+
+        <!-- Seção 2: Cards Informativos / Dicas Técnicas -->
+        <section class="dicas">
+            <h2>Como Identificar Mídias Manipuladas</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <h3>Inconsistências Visuais</h3>
+                    <p>Fique atento a piscadas de olhos não naturais, falhas na iluminação do rosto ou borrões nas bordas do cabelo.</p>
+                </div>
+                <div class="card">
+                    <h3>Áudio Dessincronizado</h3>
+                    <p>Analise se os movimentos dos lábios da pessoa correspondem com precisão ao som emitido no vídeo.</p>
+                </div>
+                <div class="card">
+                    <h3>Checagem de Fontes</h3>
+                    <p>Sempre verifique se veículos de imprensa ou agências de checagem confiáveis também publicaram a informação.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 3: Formulário Interativo (Quiz Anti-Desinformação) -->
+        <section class="quiz-section">
+            <h2>Quiz Anti-Desinformação</h2>
+            <p>Teste seus conhecimentos para identificar se você sabe agir de forma ética diante de uma possível deepfake.</p>
+            
+            <form id="quiz-form">
+                <div class="form-group">
+                    <label for="pergunta1">Se você receber um vídeo bombástico de uma figura pública dizendo algo muito absurdo, o que deve fazer?</label>
+                    <select id="pergunta1" required>
+                        <option value="">Selecione uma resposta...</option>
+                        <option value="compartilhar">Compartilhar imediatamente nos grupos de mensagens.</option>
+                        <option value="verificar">Investigar em agências de checagem confiáveis antes de repassar.</option>
+                        <option value="ignorar">Ignorar, pois se for falso não trará nenhum impacto social.</option>
+                    </select>
+                </div>
+                <button type="submit" id="submit-btn">Enviar Resposta</button>
+            </form>
+            
+            <!-- Div dinâmico que será alimentada pelo JavaScript -->
+            <div id="quiz-result" class="hidden"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Conscientização Comunitária. Conteúdo 100% autoral focado em Ética Digital.</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
