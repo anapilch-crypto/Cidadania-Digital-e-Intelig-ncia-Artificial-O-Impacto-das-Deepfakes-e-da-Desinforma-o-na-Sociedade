@@ -3,69 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidadania Digital & IA: Combate às Deepfakes</title>
+    <title>Cidadania Digital & IA | Contra a Desinformação</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
-        <div class="header-container">
-            <h1>Portal Cidadania Digital & IA</h1>
-            <!-- Botão de acessibilidade exigido no Nível 4 -->
-            <button id="theme-toggle">Alternar Modo Escuro</button>
-        </div>
+        <h1>Consciência Digital</h1>
+        <button id="toggle-dark-mode" class="btn-toggle">Alternar Modo Escuro</button>
     </header>
 
     <main>
-        <!-- Seção 1: Contextualização do Tema -->
-        <section class="intro">
-            <h2>O Impacto das Deepfakes e da Desinformação</h2>
-            <p>As deepfakes utilizam técnicas avançadas de Inteligência Artificial para adulterar vídeos, imagens e áudios com alto realismo. No contexto atual, a conscientização comunitária e o letramento digital são ferramentas essenciais para proteger a verdade e a integridade da nossa sociedade.</p>
+        <!-- Seção de Contextualização Informativa -->
+        <section class="info-section">
+            <h2>O Impacto das Deepfakes</h2>
+            <p>As <strong>deepfakes</strong> são mídias sintetizadas por Inteligência Artificial que alteram rostos e vozes com precisão assustadora. Elas espalham desinformação automatizada, moldando falsas narrativas e ameaçando a confiança na sociedade digital.</p>
         </section>
 
-        <!-- Seção 2: Cards Informativos / Dicas Técnicas -->
-        <section class="dicas">
-            <h2>Como Identificar Mídias Manipuladas</h2>
-            <div class="cards-container">
-                <div class="card">
-                    <h3>Inconsistências Visuais</h3>
-                    <p>Fique atento a piscadas de olhos não naturais, falhas na iluminação do rosto ou borrões nas bordas do cabelo.</p>
+        <!-- Seção do Jogo/Quiz Interativo -->
+        <section class="game-section">
+            <h2>Jogo da Verdade: IA ou Realidade?</h2>
+            <p class="instruction">Analise a afirmação abaixo e processe sua resposta:</p>
+            
+            <div id="quiz-container">
+                <p id="quiz-question">"Deepfakes de áudio já são usadas por criminosos para aplicar golpes clonando a voz de familiares."</p>
+                <div class="quiz-buttons">
+                    <button onclick="verificarQuiz(true)" class="btn-quiz">Verdadeiro</button>
+                    <button onclick="verificarQuiz(false)" class="btn-quiz">Falso</button>
                 </div>
-                <div class="card">
-                    <h3>Áudio Dessincronizado</h3>
-                    <p>Analise se os movimentos dos lábios da pessoa correspondem com precisão ao som emitido no vídeo.</p>
-                </div>
-                <div class="card">
-                    <h3>Checagem de Fontes</h3>
-                    <p>Sempre verifique se veículos de imprensa ou agências de checagem confiáveis também publicaram a informação.</p>
-                </div>
+                <p id="quiz-feedback" class="feedback-text"></p>
             </div>
         </section>
 
-        <!-- Seção 3: Formulário Interativo (Quiz Anti-Desinformação) -->
-        <section class="quiz-section">
-            <h2>Quiz Anti-Desinformação</h2>
-            <p>Teste seus conhecimentos para identificar se você sabe agir de forma ética diante de uma possível deepfake.</p>
+        <!-- Seção da Aba de Verificação de Veracidade -->
+        <section class="verification-section">
+            <h2>Portal de Verificação de Mídia</h2>
+            <p>Desconfia de um link, imagem ou vídeo? Envie os dados abaixo para nossa IA simulada analisar padrões de manipulação digital.</p>
             
-            <form id="quiz-form">
+            <form id="verification-form" onsubmit="analisarMedia(event)">
                 <div class="form-group">
-                    <label for="pergunta1">Se você receber um vídeo bombástico de uma figura pública dizendo algo muito absurdo, o que deve fazer?</label>
-                    <select id="pergunta1" required>
-                        <option value="">Selecione uma resposta...</option>
-                        <option value="compartilhar">Compartilhar imediatamente nos grupos de mensagens.</option>
-                        <option value="verificar">Investigar em agências de checagem confiáveis antes de repassar.</option>
-                        <option value="ignorar">Ignorar, pois se for falso não trará nenhum impacto social.</option>
+                    <label for="media-url">Link ou Descrição da Mídia:</label>
+                    <input type="text" id="media-url" placeholder="Cole o link suspeito aqui..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="media-type">Tipo de Mídia:</label>
+                    <select id="media-type" required>
+                        <option value="">Selecione...</option>
+                        <option value="video">Vídeo (Possível Deepfake Facial)</option>
+                        <option value="audio">Áudio (Possível Clonagem de Voz)</option>
+                        <option value="text">Texto / Notícia Escrita</option>
                     </select>
                 </div>
-                <button type="submit" id="submit-btn">Enviar Resposta</button>
+
+                <button type="submit" class="btn-submit">Iniciar Varredura Antifake</button>
             </form>
-            
-            <!-- Div dinâmico que será alimentada pelo JavaScript -->
-            <div id="quiz-result" class="hidden"></div>
+
+            <!-- Container de resposta dinâmica manipulado por JS -->
+            <div id="analysis-result" class="result-box hidden">
+                <h3>Resultado da Análise Estatística</h3>
+                <p id="analysis-text"></p>
+                <p class="credit-note">Nota: Ferramenta educativa baseada em padrões comuns de IA.</p>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Conscientização Comunitária. Conteúdo 100% autoral focado em Ética Digital.</p>
+        <p>&copy; 2026 Projeto Cidadania Digital. Desenvolvido para fins educacionais.</p>
     </footer>
 
     <script src="js/script.js"></script>
