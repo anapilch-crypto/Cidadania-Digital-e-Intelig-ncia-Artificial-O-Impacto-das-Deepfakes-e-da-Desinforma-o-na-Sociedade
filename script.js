@@ -1,76 +1,52 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cidadania Digital & IA | Contra a Desinformação</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <header>
-        <h1>Consciência Digital</h1>
-        <button id="toggle-dark-mode" class="btn-toggle">Alternar Modo Escuro</button>
-    </header>
+// Controle do Modo Escuro (Acessibilidade)
+const toggleButton = document.getElementById('toggle-dark-mode');
+toggleButton.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+});
 
-    <main>
-        <!-- Seção de Contextualização Informativa -->
-        <section class="info-section">
-            <h2>O Impacto das Deepfakes</h2>
-            <p>As <strong>deepfakes</strong> são mídias sintetizadas por Inteligência Artificial que alteram rostos e vozes com precisão assustadora. Elas espalham desinformação automatizada, moldando falsas narrativas e ameaçando a confiança na sociedade digital.</p>
-        </section>
+// Lógica do Jogo / Quiz Antidesinformação
+function verificarQuiz(respostaUsuario) {
+    const feedback = document.getElementById('quiz-feedback');
+    const respostaCorreta = true; // A afirmação do HTML é verdadeira
 
-        <!-- Seção do Jogo/Quiz Interativo -->
-        <section class="game-section">
-            <h2>Jogo da Verdade: IA ou Realidade?</h2>
-            <p class="instruction">Analise a afirmação abaixo e processe sua resposta:</p>
-            
-            <div id="quiz-container">
-                <p id="quiz-question">"Deepfakes de áudio já são usadas por criminosos para aplicar golpes clonando a voz de familiares."</p>
-                <div class="quiz-buttons">
-                    <button onclick="verificarQuiz(true)" class="btn-quiz">Verdadeiro</button>
-                    <button onclick="verificarQuiz(false)" class="btn-quiz">Falso</button>
-                </div>
-                <p id="quiz-feedback" class="feedback-text"></p>
-            </div>
-        </section>
+    // Processamento das variáveis antes de exibir na tela
+    if (respostaUsuario === respostaCorreta) {
+        feedback.textContent = "Correto! Clonagem de voz por IA já é uma realidade utilizada em golpes de engenharia social. Fique sempre alerta!";
+        feedback.className = "feedback-text correct";
+    } else {
+        feedback.textContent = "Incorreto. Infelizmente, isso é verdadeiro. Criminosos usam trechos curtos de redes sociais para clonar vozes.";
+        feedback.className = "feedback-text incorrect";
+    }
+}
 
-        <!-- Seção da Aba de Verificação de Veracidade -->
-        <section class="verification-section">
-            <h2>Portal de Verificação de Mídia</h2>
-            <p>Desconfia de um link, imagem ou vídeo? Envie os dados abaixo para nossa IA simulada analisar padrões de manipulação digital.</p>
-            
-            <form id="verification-form" onsubmit="analisarMedia(event)">
-                <div class="form-group">
-                    <label for="media-url">Link ou Descrição da Mídia:</label>
-                    <input type="text" id="media-url" placeholder="Cole o link suspeito aqui..." required>
-                </div>
+// Lógica da Aba de Verificação de Veracidade (Simulação Algorítmica)
+function analisarMedia(event) {
+    event.preventDefault(); // Evita o recarregamento da página
 
-                <div class="form-group">
-                    <label for="media-type">Tipo de Mídia:</label>
-                    <select id="media-type" required>
-                        <option value="">Selecione...</option>
-                        <option value="video">Vídeo (Possível Deepfake Facial)</option>
-                        <option value="audio">Áudio (Possível Clonagem de Voz)</option>
-                        <option value="text">Texto / Notícia Escrita</option>
-                    </select>
-                </div>
+    const tipoMedia = document.getElementById('media-type').value;
+    const resultadoDiv = document.getElementById('analysis-result');
+    const resultadoTexto = document.getElementById('analysis-text');
 
-                <button type="submit" class="btn-submit">Iniciar Varredura Antifake</button>
-            </form>
+    // Variáveis de processamento dinâmico baseado na escolha do usuário
+    let probabilidadeManipulacao = 0;
+    let diagnostico = "";
 
-            <!-- Container de resposta dinâmica manipulado por JS -->
-            <div id="analysis-result" class="result-box hidden">
-                <h3>Resultado da Análise Estatística</h3>
-                <p id="analysis-text"></p>
-                <p class="credit-note">Nota: Ferramenta educativa baseada em padrões comuns de IA.</p>
-            </div>
-        </section>
-    </main>
+    if (tipoMedia === "video") {
+        probabilidadeManipulacao = 85;
+        diagnostico = "Alta probabilidade de Deepfake. Foram detectados padrões assíncronos no piscar de olhos e artefatos digitais nas bordas do rosto.";
+    } else if (tipoMedia === "audio") {
+        probabilidadeManipulacao = 70;
+        diagnostico = "Suspeita de sintetização de voz. Frequências metálicas inconsistentes com a respiração humana natural foram encontradas.";
+    } else {
+        probabilidadeManipulacao = 45;
+        diagnostico = "Texto sob análise contextual. Recomenda-se checar agências de fact-checking conhecidas, pois carece de fontes oficiais primárias.";
+    }
 
-    <footer>
-        <p>&copy; 2026 Projeto Cidadania Digital. Desenvolvido para fins educacionais.</p>
-    </footer>
-
-    <script src="js/script.js"></script>
-</body>
-</html>
+    // Atualização dinâmica do DOM para exibir os resultados processados
+    resultadoTexto.innerHTML = `<strong>Análise para ${tipoMedia.toUpperCase()}:</strong><br>
+                                 Índice de Risco Estimado: ${probabilidadeManipulacao}%<br>
+                                 Parecer Técnico: ${diagnostico}`;
+    
+    // Revela a div de resultados removendo a classe hidden
+    resultadoDiv.classList.remove('hidden');
+}
